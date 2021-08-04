@@ -12,13 +12,16 @@
 //
 // It is assumed that the LCD module is connected to
 // the following pins:
-//      SCK  - Pin 2
-//      MOSI - Pin 3
-//      DC   - Pin 4
-//      RST  - Pin 5
-//      CS   - Pin 6
+//      GND  - GND
+//      BL   - GND
+//      VCC  - 3.3V
+//      CLK  - Pin 8
+//      DIN  - Pin 9
+//      DC   - Pin 10
+//      RST  - Pin 12
+//      CE   - Pin 11
 
-LCD5110 lcd(2,3,4,6,5); //Use this line with the shield
+LCD5110 lcd(8,9,10,12,11); //Use this line with the shield
 
 // LCD5110 lcd(8,9,10,12,11); //Use this line with a standalone Nokia 5110 display
 
