@@ -22,12 +22,22 @@ void setup()
   lcd.drawBitmap(0, 0, splash, 84, 48);
   lcd.update();
   delay(3000);
+  if (!mlx.begin()) 
+  {
+    Serial.println("Error connecting to MLX sensor. Check wiring.");
+    while (1);
+  }
+  else
+  {
+    Serial.println("Done connecting to MLX sensor. starting sensor.");
+  }
+  delay(3000);
 }
 
 void loop()
 {
   delay(5000);
-  if(1)//Serial.read()=='T')
+  if(Serial.read()=='T')
   {
     Serial.println("Started");
     String temperature="";
