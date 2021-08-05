@@ -11,7 +11,7 @@ Moreover the device will also register the person's temperature to keep a check 
 1) Arduino Uno
 2) Jumper wires ( as required )
 3) ISB-TS45D Infrared Thermopile Sensor x 1     <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/">Click to Buy</a>
-4) Nokia 5110 LCD Display Module – Blue x 1
+4) Nokia 5110 LCD Display Module – Blue x 1     <a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/">Click to buy</a>
 5) Resistor 4.75K ohm x 2
 6) Capacitor 100nF x1
 7) Breadboard ( small ) x 1 { if required }
@@ -40,6 +40,12 @@ Specs:
 5. Voltage Response: 20.11 Vmm2/w
 6. Responsivity: 124
 
+Pin configuration for MLX90614 temp sensor
+1. VCC ▶ 5V
+2. GND ▶ GND
+3. SCL ▶ A5
+4. SDA ▶ A4
+
 # 2) Nokia 5110 LCD Display Module – Blue
 <a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/"><img src="https://robu.in/wp-content/uploads/2017/09/HTB1hQN7NFXXXXXUXpXX760XFXXXr.png" width="500px"></a>
 
@@ -55,6 +61,14 @@ Nokia 5110 LCD Display Module is a low-cost monochrome LCD module comprised of 8
 
 It uses the PCD8544 controller, which is the same used in the Nokia 3310 LCD. The PCD8544 is a low power CMOS LCD controller/driver, designed to drive a graphic display of 48 rows and 84 columns. All necessary functions for the display are provided in a single chip, including on-chip generation of LCD supply and bias voltages, resulting in a minimum of external components and low power consumption. The PCD8544 interfaces to microcontrollers through a serial bus interface.
 
+Specs:
+
+1. Power supply voltage: 2.7 V-3.3 V/5 V
+2. Data interface level: 2.7-5V.
+3. Resolution: 84 x 48 pixel
+4. Backlight power supply voltage: highest 3.3 V.
+5. Backlight: Blue.
+
 Pin Configuration :
 1. RST– reset
 2. CE– chip selection
@@ -64,6 +78,32 @@ Pin Configuration :
 6. VCC– 3.3V
 7. LIGHT– backlight control terminal
 8. GND– power negative
+
+
+
+
+
+# Connection procedure of the components with arduino
+#
+# Connecting the Temperature sensor
+<img src="https://hackster.imgix.net/uploads/attachments/225384/FOQV7G4IIQA0IHC.LARGE.jpg" width="500px">
+
+If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pins of it, the put a capacitor between the GND and +3.3v pins. If its on breakout board then just connect the pins to the Arduino board: 
+1. SDA with A5
+2. SCL with A4
+3. GND to GND
+4. +3.3 to 3.3v
+
+# Connecting the LCD Display
+<img src="https://www.electronics-lab.com/wp-content/uploads/2017/11/nokia-and-arduino_bb.png" width="500px">
+
+
+
+
+
+
+
+
 
 
 
