@@ -45,6 +45,25 @@ Specs:
 
 <a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/">Click to buy</a>
 
+The name of this product itself is enough to explain its origin. Yes of course !!! this LCD module was used in old Nokia 5110/3310 cell phones. Now its been widely used by hobbyists for graphics, text etc.
+
+Though it’s an industrial module, this LCD display is extremely easy to use. The Nokia 5110 is a basic graphic LCD screen for lots of applications. It was originally intended for as a cell phone screen.
+
+This Nokia 5110 LCD Display Module is mounted on an easy to solder PCB. The Nokia 5110 LCD Module uses a Philips PCD8544 LCD driver, which is designed for mobile phones.
+
+Nokia 5110 LCD Display Module is a low-cost monochrome LCD module comprised of 84 X 48 pixels that can be used to display rich graphics and text content. This module is a revision that accepts 3-5V input. So no extra level shifter is needed.
+
+It uses the PCD8544 controller, which is the same used in the Nokia 3310 LCD. The PCD8544 is a low power CMOS LCD controller/driver, designed to drive a graphic display of 48 rows and 84 columns. All necessary functions for the display are provided in a single chip, including on-chip generation of LCD supply and bias voltages, resulting in a minimum of external components and low power consumption. The PCD8544 interfaces to microcontrollers through a serial bus interface.
+
+Pin Configuration :
+1. RST– reset
+2. CE– chip selection
+3. DC– data/commands choice
+4. DIN– serial data line
+5. CLK– serial Clock Speed.
+6. VCC– 3.3V
+7. LIGHT– backlight control terminal
+8. GND– power negative
 
 
 
