@@ -1,13 +1,13 @@
 # Dashing Attendance 
 
-# Our Objective
+## Our Objective
 We are designing a AI based face recognization system for taking attendance of the employees and record their body temperature, to predict any covid positive case.
 This is safe in comparison to fingerprint attendance as all the people need to touch the same fingerprint sensor, which is not favourable for the pandemic conditions as need to minimise social contact.
 Moreover the device will also register the person's temperature to keep a check on them and predict any abnormal condition.
 
 # 
-# For Temperature dectection and display
-# Materials required:
+## For Temperature dectection and display ( Arduino related part )
+### Materials required:
 1) Arduino Uno
 2) Jumper wires ( as required )
 3) ISB-TS45D Infrared Thermopile Sensor x 1     <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/">Click to Buy</a>
@@ -15,10 +15,11 @@ Moreover the device will also register the person's temperature to keep a check 
 5) Resistor 4.75K ohm x 2
 6) Capacitor 100nF x1
 7) Breadboard ( small ) x 1 { if required }
+#
 
-# Some details about the sensors
+### Some details about the sensors:
 
-# 1) ISB-TS45D Infrared Thermopile Sensor
+#### 1) ISB-TS45D Infrared Thermopile Sensor
 <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/"><img src="https://cdn-shop.adafruit.com/970x728/1747-00.jpg" width="500px"></a>
 
 <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/">Click to Buy</a>
@@ -46,7 +47,7 @@ Pin configuration for MLX90614 temp sensor
 3. SCL ▶ A5
 4. SDA ▶ A4
 
-# 2) Nokia 5110 LCD Display Module – Blue
+#### 2) Nokia 5110 LCD Display Module – Blue
 <a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/"><img src="https://robu.in/wp-content/uploads/2017/09/HTB1hQN7NFXXXXXUXpXX760XFXXXr.png" width="500px"></a>
 
 <a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/">Click to buy</a>
@@ -81,11 +82,9 @@ Pin Configuration :
 
 
 
-
-
-# Connection procedure of the components with arduino
+### Connection procedure of the components with arduino
 #
-# Connecting the Temperature sensor
+#### Connecting the Temperature sensor
 <img src="https://hackster.imgix.net/uploads/attachments/225384/FOQV7G4IIQA0IHC.LARGE.jpg" width="500px">
 
 If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pins of it, the put a capacitor between the GND and +3.3v pins. If its on breakout board then just connect the pins to the Arduino board: 
@@ -94,10 +93,20 @@ If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pi
 3. GND to GND
 4. +3.3 to 3.3v
 
-# Connecting the LCD Display
+#### Connecting the LCD Display
 <img src="https://www.electronics-lab.com/wp-content/uploads/2017/11/nokia-and-arduino_bb.png" width="500px">
 
-Just connect the pins to the Arduino 
+Just connect the pins to the Arduino:
+1. GND  - GND
+2. BL   - GND
+3. VCC  - 3.3V
+4. CLK  - Pin 8
+5. DIN  - Pin 9
+6. DC   - Pin 10
+7. RST  - Pin 12
+8. CE   - Pin 11
+
+
 
 
 
