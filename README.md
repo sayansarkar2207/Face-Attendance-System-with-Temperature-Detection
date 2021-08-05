@@ -7,7 +7,7 @@ Moreover the device will also register the person's temperature to keep a check 
 
 # 
 ## For Temperature dectection and display ( Arduino related part )
-### Materials required:
+### a) Materials required:
 1) Arduino Uno
 2) Jumper wires ( as required )
 3) ISB-TS45D Infrared Thermopile Sensor x 1     <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/">Click to Buy</a>
@@ -17,7 +17,7 @@ Moreover the device will also register the person's temperature to keep a check 
 7) Breadboard ( small ) x 1 { if required }
 #
 
-### Some details about the sensors:
+### b) Some details about the sensors:
 
 #### 1) ISB-TS45D Infrared Thermopile Sensor
 <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/"><img src="https://cdn-shop.adafruit.com/970x728/1747-00.jpg" width="500px"></a>
@@ -82,9 +82,9 @@ Pin Configuration :
 
 
 
-### Connection procedure of the components with arduino
+### c) Connection procedure of the components with arduino
 #
-#### Connecting the Temperature sensor
+#### i) Connecting the Temperature sensor
 <img src="https://hackster.imgix.net/uploads/attachments/225384/FOQV7G4IIQA0IHC.LARGE.jpg" width="500px">
 
 If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pins of it, the put a capacitor between the GND and +3.3v pins. If its on breakout board then just connect the pins to the Arduino board: 
@@ -93,7 +93,7 @@ If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pi
 3. GND to GND
 4. +3.3 to 3.3v
 
-#### Connecting the LCD Display
+#### ii)Connecting the LCD Display
 <img src="https://www.electronics-lab.com/wp-content/uploads/2017/11/nokia-and-arduino_bb.png" width="500px">
 
 Just connect the pins to the Arduino:
