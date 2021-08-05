@@ -1,17 +1,115 @@
-Dashing_Attendance
+# Dashing Attendance 
 
+# Our Objective
 We are designing a AI based face recognization system for taking attendance of the employees and record their body temperature, to predict any covid positive case.
 This is safe in comparison to fingerprint attendance as all the people need to touch the same fingerprint sensor, which is not favourable for the pandemic conditions as need to minimise social contact.
 Moreover the device will also register the person's temperature to keep a check on them and predict any abnormal condition.
 
-For Temperature dectection and display
-
-Materials required:
+# 
+# For Temperature dectection and display
+# Materials required:
 1) Arduino Uno
 2) Jumper wires ( as required )
-3) ISB-TS45D Infrared Thermopile Sensor x 1
+3) ISB-TS45D Infrared Thermopile Sensor x 1     <a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/">Click to Buy</a>
 4) Nokia 5110 LCD Display Module – Blue x 1
 5) Resistor 4.75K ohm x 2
 6) Capacitor 100nF x1
 7) Breadboard ( small ) x 1 { if required }
 
+# Some details about the sensors
+
+# 1) ISB-TS45D Infrared Thermopile Sensor
+<a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/"><img src="https://cdn-shop.adafruit.com/970x728/1747-00.jpg" width="500px"></a>
+
+<a href="https://robu.in/product/isb-ts45d-infrared-thermopile-sensor/">Click to Buy</a>
+
+Infrared Thermopile Sensor can measure the temperature without contact by detecting the infrared energy of an object. And the higher the temperature, the more infrared energy is produced.
+
+Thermopile sensing elements consist of small thermocouples on silicon chips that absorb energy and produce output signals. ISB-TS45D Infrared Thermopile Sensor can be widely used in non-contact temperature measurement. This product consists of infrared filters, thermistors, and other components, and packaged by TO-46Made of metal, it has high reliability and high sensitivity.
+
+Application:
+
+Non-contact temperature measurement Ear thermometer, forehead thermometer Industrial continuous temperature control
+
+Specs:
+
+1. Detection angle: 90°
+2. Thermopile resistance: 95 to 140 KΩ
+3. Noise voltage: 45 nV/Hz1/2
+4. NEP: 0.27 nW/Hz1/2
+5. Voltage Response: 20.11 Vmm2/w
+6. Responsivity: 124
+
+# 2) Nokia 5110 LCD Display Module – Blue
+<a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/"><img src="https://robu.in/wp-content/uploads/2017/09/HTB1hQN7NFXXXXXUXpXX760XFXXXr.png" width="500px"></a>
+
+<a href="https://robu.in/product/nokia-5110-lcd-display-module-nokia-5110-84x48-lcd-module-blue-backlight/">Click to buy</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Adafruit-MLX90614-Library [![Build Status](https://github.com/adafruit/Adafruit-MLX90614-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit-MLX90614-Library/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit-MLX90614-Library/html/index.html)
+
+This is a library for the MLX90614 temperature sensor
+
+<a href="https://www.adafruit.com/products/1747"><img src="https://cdn-shop.adafruit.com/970x728/1747-00.jpg" width="500px"></a>
+
+Designed and tested  to work with the MLX90614 sensors in the adafruit shop
+ * https://www.adafruit.com/products/1747 3V version
+ * https://www.adafruit.com/products/1748 5V version
+
+Check out the links above for our tutorials and wiring diagrams
+
+Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!
+
+# Installation
+To install, use the Arduino Library Manager and search for "Adafruit-MLX90614-Library" and install the library.
+
+# Contributing
+
+Contributions are welcome! Please read our [Code of Conduct](https://github.com/adafruit/Adafruit-MLX90614-Library/blob/master/CODE_OF_CONDUCT.md>)
+before contributing to help this project stay welcoming.
+
+## Documentation and doxygen
+Documentation is produced by doxygen. Contributions should include documentation for any new code added.
+
+Some examples of how to use doxygen can be found in these guide pages:
+
+https://learn.adafruit.com/the-well-automated-arduino-library/doxygen
+
+https://learn.adafruit.com/the-well-automated-arduino-library/doxygen-tips
+
+## Formatting and clang-format
+This library uses [`clang-format`](https://releases.llvm.org/download.html) to standardize the formatting of `.cpp` and `.h` files. 
+Contributions should be formatted using `clang-format`:
+
+The `-i` flag will make the changes to the file.
+```bash
+clang-format -i *.cpp *.h
+```
+If you prefer to make the changes yourself, running `clang-format` without the `-i` flag will print out a formatted version of the file. You can save this to a file and diff it against the original to see the changes.
+
+Note that the formatting output by `clang-format` is what the automated formatting checker will expect. Any diffs from this formatting will result in a failed build until they are addressed. Using the `-i` flag is highly recommended.
+
+### clang-format resources
+  * [Binary builds and source available on the LLVM downloads page](https://releases.llvm.org/download.html)
+  * [Documentation and IDE integration](https://clang.llvm.org/docs/ClangFormat.html)
+
+## About this Driver
+Written by Limor Fried for Adafruit Industries.
+BSD license, check license.txt for more information
+All text above must be included in any redistribution
