@@ -97,7 +97,7 @@ If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pi
 # Connecting the LCD Display
 <img src="https://www.electronics-lab.com/wp-content/uploads/2017/11/nokia-and-arduino_bb.png" width="500px">
 
-
+Just connect the pins to the Arduino 
 
 
 
