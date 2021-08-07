@@ -106,6 +106,10 @@ Just connect the pins to the Arduino:
 7. RST  - Pin 12
 8. CE   - Pin 11
 
+### Arduino Libraries
+
+1. Adafruit MLX90614 library: <a href="https://github.com/adafruit/Adafruit-MLX90614-Library">Click to view source</a>
+2. Nokia 5110 Graph library: <a href="http://www.rinkydinkelectronics.com/library.php?id=47">Click to view source</a> 
 
 
 
