@@ -50,18 +50,19 @@ void setup()
   {
     Serial.println("Done connecting to MLX sensor. starting sensor.");
   }
-  delay(3000);
+  Serial.setTimeout(1);
+  lcd.clrScr();
 }
 
 void loop()
 {
-  delay(5000);
-  if(Serial.read()=='T') //trigerring the sensor
-  {
-    Serial.println("Started");
+    while (!Serial.available());
+    char x;
+    x=Serial.read();
+    if(x=='t')
+    {
     String temperature="";
     float temp=0;
-    lcd.clrScr();
     for(int i=1;i<=10;i++)
     {
       temp=temp+mlx.readObjectTempF(); // reading 10 values for 5 seconds
@@ -73,7 +74,7 @@ void loop()
     {
       temperature.remove(3,2); // formating the output to show upto 1 decimal place
     }
-    Serial.print(temperature);Serial.println("*F"); // sending the output to serial moniter for storage and further processing
+    Serial.println(temperature+"*F"); // sending the output to serial moniter for storage and further processing
     lcd.setFont(BigNumbers);
     if(temperature.length()==4)
     {
@@ -85,8 +86,6 @@ void loop()
     }
     lcd.update(); // updating the display to show the new value
     delay(5000);
-    lcd.print("",15,19);
-    lcd.update();
-    Serial.println("Ended");
-  }
+    lcd.clrScr();
+    }
 } 
