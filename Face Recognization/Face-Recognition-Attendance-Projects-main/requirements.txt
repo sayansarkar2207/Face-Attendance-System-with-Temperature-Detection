@@ -32,6 +32,7 @@ PyRect==0.1.4
 pyperclip==1.8.2
 PyMsgBox==1.0.9
 PyGetWindow==0.0.9
+pyttsx3==2.90
 requests==2.26.0
 six==1.16.0
 setuptools==56.0.0
