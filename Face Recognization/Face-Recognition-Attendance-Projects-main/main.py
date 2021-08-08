@@ -2,17 +2,13 @@ import cv2
 import numpy as np
 import face_recognition
 import os
-import csv
-from datetime import datetime, date
+from datetime import datetime
 import serial
-import time
 
-arduino = serial.Serial(port='COM3', baudrate=9600, timeout=10)
-
-def write_read(x):
-    arduino.write(bytes(x, 'utf-8'))
+def write_read():
+    arduino.write(bytes('t', 'utf-8'))
     while arduino.inWaiting()==0:
-        camera_on(cap,False)
+        camera_on(cap)
     data = arduino.readline()
     return data
 
@@ -27,8 +23,10 @@ def findEncodings(images):
 
 
 def markAttendance(name,frame):
-    today = date.today()
+    today = datetime.today()
     dateString = today.strftime("%d-%m-%Y")
+    now = datetime.now()
+    dtString = now.strftime('%H:%M:%S')
     mList = os.listdir('Attendance')
     c = mList.count(dateString)
     if(c==0):
@@ -45,30 +43,22 @@ def markAttendance(name,frame):
         entry = line.split(',')
         nameList.append(entry[0])
     if name not in nameList:
-        now = datetime.now()
-        dtString = now.strftime('%H:%M:%S')
-        value = write_read('t')
+        print("************************************************************************")
+        print("Welcome",name)
+        print("Your face has been Registered")
+        print("Kindly register your body temperature for 5 seconds")
+        value = write_read()
         f.writelines(f'{name},{dtString},{dateString},{value}\n')
         cv2.imwrite(filename=f'Attendance/{dateString}/{name}.jpg', img=frame)
         #cv2.imshow("Captured Image", cv2.imread(f'{name}.jpg'))
-        print("Attendance done! for",dateString)
-        print("Image saved! for",name)
-        print("Your body temperature",value)
-
-        
-path = 'Training_images'
-images = []
-classNames = []
-myList = os.listdir(path)
-print(myList)
-for cl in myList:
-    curImg = cv2.imread(f'{path}/{cl}')
-    images.append(curImg)
-    classNames.append(os.path.splitext(cl)[0])
-print(classNames)
+        print("Attendance done!")
+        print("Image saved!")
+        print("Your body temperature is",value)
+        print("************************************************************************")
 
 
-def camera_on(cap,flag):
+def camera_on(cap):
+    name=" "
     success, frame = cap.read()
     imgS = cv2.resize(frame, (0, 0), None, 0.25, 0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
@@ -85,14 +75,37 @@ def camera_on(cap,flag):
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
             cv2.rectangle(frame, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
             cv2.putText(frame, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-            if flag:
-                markAttendance(name,frame)
-    cv2.imshow('Webcam', frame)
-    cv2.waitKey(1)
+    return name,frame
 
 
+arduino = serial.Serial(port='COM3', baudrate=9600, timeout=10)
+path = 'Training_images'
+images = []
+classNames = []
+myList = os.listdir(path)
+print(myList)
+for cl in myList:
+    curImg = cv2.imread(f'{path}/{cl}')
+    images.append(curImg)
+    classNames.append(os.path.splitext(cl)[0])
+print(classNames)
 encodeListKnown = findEncodings(images)
 print('Encoding Complete')
 cap = cv2.VideoCapture(0)
+count=0
+prev ="True"
 while True:
-    camera_on(cap,True)
+    name,frame=camera_on(cap)
+    if name==" ":
+        count=0
+        cv2.destroyAllWindows()
+        continue
+    cv2.imshow('Webcam', frame)
+    cv2.waitKey(1)
+    if prev == name :
+        count+= 1
+    else:
+        prev=name
+        count=0
+    if count >=20:
+        markAttendance(name,frame)
