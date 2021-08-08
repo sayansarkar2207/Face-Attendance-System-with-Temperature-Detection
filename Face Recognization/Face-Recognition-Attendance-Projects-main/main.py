@@ -40,6 +40,12 @@ def markAttendance(name,frame):
     if(cc==0):
         f =open(f'Attendance/{dateString}/Attendance_{dateString}.csv', 'w')
         f.writelines('NAME,TIME,DATE,TEMPERATURE\n')
+    ccc = tList.count(f'Attendance_{dateString}.log')
+    if(ccc==0):
+        g=open(f'Attendance/{dateString}/Attendance_{dateString}.log', 'w')
+        g.write('===========\n')
+        g.write(dateString+"\n")
+        g.write('===========\n\n')
     f=open(f'Attendance/{dateString}/Attendance_{dateString}.csv', 'r+')
     myDataList = f.readlines()
     nameList = []
@@ -73,6 +79,9 @@ def markAttendance(name,frame):
         engine.say("Thank you "+name+" for marking your attendance")
         engine.runAndWait()
         print("************************************************************************")
+        g.write('************************************************************************\n')
+        g.write(name+" @ "+dtString+" @ "+dateString+"\n")
+        g.write('************************************************************************\n\n')
 
 
 def camera_on(cap):
