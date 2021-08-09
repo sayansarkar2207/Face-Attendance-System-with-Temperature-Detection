@@ -6,12 +6,12 @@ from datetime import datetime
 import serial
 import pyttsx3
 
+
 def write_read():
     arduino.write(bytes('t', 'utf-8'))
     while arduino.inWaiting()==0:
         name,frame=camera_on(cap)
-        cv2.imshow('Webcam', frame)
-        cv2.waitKey(1)
+        cam_show(frame)
     data = arduino.readline()
     return data
 
@@ -36,22 +36,40 @@ def markAttendance(name,frame):
     if(c==0):
         os.mkdir(f'Attendance/{dateString}')
     tList = os.listdir(f'Attendance/{dateString}')
-    cc = tList.count(f'Attendance_{dateString}.csv')
+    cc = tList.count(f'Attendance_{dateString}_IN.csv')
+    cc1 = tList.count(f'Attendance_{dateString}_OUT.csv')
     if(cc==0):
-        f =open(f'Attendance/{dateString}/Attendance_{dateString}.csv', 'w')
-        f.writelines('NAME,TIME,DATE,TEMPERATURE\n')
-    ccc = tList.count(f'Attendance_{dateString}.log')
+        f =open(f'Attendance/{dateString}/Attendance_{dateString}_IN.csv', 'w')
+        f.writelines('NAME,IN TIME,IN TEMPERATURE\n')
+    if(cc1==0):
+        f =open(f'Attendance/{dateString}/Attendance_{dateString}_OUT.csv', 'w')
+        f.writelines('NAME,OUT TIME,OUT TEMPERATURE\n')
+    ccc = tList.count(f'Attendance_{dateString}_IN.log')
+    ccc1 = tList.count(f'Attendance_{dateString}_OUT.log')
     if(ccc==0):
-        g=open(f'Attendance/{dateString}/Attendance_{dateString}.log', 'w')
+        g=open(f'Attendance/{dateString}/Attendance_{dateString}_IN.log', 'w')
         g.write('===========\n')
         g.write(dateString+"\n")
         g.write('===========\n\n')
-    f=open(f'Attendance/{dateString}/Attendance_{dateString}.csv', 'r+')
+    if(ccc1==0):
+        g1=open(f'Attendance/{dateString}/Attendance_{dateString}_OUT.log', 'w')
+        g1.write('===========\n')
+        g1.write(dateString+"\n")
+        g1.write('===========\n\n')
+    f=open(f'Attendance/{dateString}/Attendance_{dateString}_IN.csv', 'r+')
+    f1=open(f'Attendance/{dateString}/Attendance_{dateString}_OUT.csv', 'r+')
     myDataList = f.readlines()
+    myDataList1 = f1.readlines()
     nameList = []
+    nameList1 = []
+    intime=[]
     for line in myDataList:
         entry = line.split(',')
         nameList.append(entry[0])
+        intime.append(entry[1])
+    for line in myDataList1:
+        entry = line.split(',')
+        nameList1.append(entry[0])
     if name not in nameList:
         print("************************************************************************")
         print("Welcome",name)
@@ -64,11 +82,14 @@ def markAttendance(name,frame):
         engine.say("Kindly register your body temperature for 5 seconds")
         engine.runAndWait()
         value = write_read()
-        f.writelines(f'{name},{dtString},{dateString},{value}\n')
-        cv2.imwrite(filename=f'Attendance/{dateString}/{name}.jpg', img=frame)
+        f.writelines(f'{name},{dtString},{value}\n')
+        cv2.imwrite(filename=f'Attendance/{dateString}/{name}_{dtString}_IN.jpg', img=frame)
         #cv2.imshow("Captured Image", cv2.imread(f'{name}.jpg'))
         print("Attendance done!")
         engine.say("Attendance done! on "+dt)
+        engine.runAndWait()
+        print("Your in time is",dtString)
+        engine.say("Your in time is "+dtString)
         engine.runAndWait()
         print("Image saved!")
         engine.say("Image saved!")
@@ -80,8 +101,50 @@ def markAttendance(name,frame):
         engine.runAndWait()
         print("************************************************************************")
         g.write('************************************************************************\n')
-        g.write(name+" @ "+dtString+" @ "+dateString+"\n")
+        g.write(name+" @ "+dtString+" @ "+dateString+" @ "+str(value)+" @ IN\n")
         g.write('************************************************************************\n\n')
+    elif name not in nameList1:
+        time=(int(intime[nameList.index(name)][3:5])+5)%60
+        time1=int(intime[nameList.index(name)][0:2])
+        if(int(dtString[0:2])>time1) or (int(dtString[3:5])>time):
+            print("************************************************************************")
+            print("Good bye",name)
+            engine.say("Good Bye"+name)
+            engine.runAndWait()
+            print("Your face has been Registered")
+            engine.say("Your face has been Registered")
+            engine.runAndWait()
+            print("Kindly register your body temperature for 5 seconds")
+            engine.say("Kindly register your body temperature for 5 seconds")
+            engine.runAndWait()
+            value = write_read()
+            f.writelines(f'{name},{dtString},{value}\n')
+            cv2.imwrite(filename=f'Attendance/{dateString}/{name}_{dtString}_OUT.jpg', img=frame)
+            #cv2.imshow("Captured Image", cv2.imread(f'{name}.jpg'))
+            print("Attendance done!")
+            engine.say("Attendance done! on "+dt)
+            engine.runAndWait()
+            print("Your out time is",dtString)
+            engine.say("Your out time is "+dtString)
+            engine.runAndWait()
+            print("Image saved!")
+            engine.say("Image saved!")
+            engine.runAndWait()
+            print("Your body temperature is",value)
+            engine.say("Your body temperature is "+str(value))
+            engine.runAndWait()
+            engine.say("Thank you "+name+" for marking your attendance, Bye bye")
+            engine.runAndWait()
+            print("************************************************************************")
+            g1.write('************************************************************************\n')
+            g1.write(name+" @ "+dtString+" @ "+dateString+" @ "+str(value)+" @ OUT\n")
+            g1.write('************************************************************************\n\n')
+        else:
+            engine.say(name+", you In time has already been registered")
+            engine.runAndWait()
+    else:
+        engine.say(name+", your attendance has already been registered")
+        engine.runAndWait()
 
 
 def camera_on(cap):
@@ -104,35 +167,42 @@ def camera_on(cap):
             cv2.putText(frame, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
     return name,frame
 
-engine = pyttsx3.init()
-arduino = serial.Serial(port='COM3', baudrate=9600, timeout=10)
-path = 'Training_images'
-images = []
-classNames = []
-myList = os.listdir(path)
-print(myList)
-for cl in myList:
-    curImg = cv2.imread(f'{path}/{cl}')
-    images.append(curImg)
-    classNames.append(os.path.splitext(cl)[0])
-print(classNames)
-encodeListKnown = findEncodings(images)
-print('Encoding Complete')
-cap = cv2.VideoCapture(0)
-count=0
-prev ="True"
-while True:
-    name,frame=camera_on(cap)
-    if name==" ":
-        count=0
-        cv2.destroyAllWindows()
-        continue
+
+def cam_show(frame):
     cv2.imshow('Webcam', frame)
     cv2.waitKey(1)
-    if prev == name :
-        count+= 1
-    else:
-        prev=name
-        count=0
-    if count >=10:
-        markAttendance(name,frame)
+
+
+if __name__ == '__main__':
+    engine = pyttsx3.init()
+    arduino = serial.Serial(port='COM3', baudrate=9600, timeout=10)
+    path = 'Training_images'
+    images = []
+    classNames = []
+    myList = os.listdir(path)
+    print(myList)
+    for cl in myList:
+        curImg = cv2.imread(f'{path}/{cl}')
+        images.append(curImg)
+        classNames.append(os.path.splitext(cl)[0])
+    print(classNames)
+    encodeListKnown = findEncodings(images)
+    print('Encoding Complete')
+    cap = cv2.VideoCapture(0)
+    count=0
+    prev ="True"
+    while True:
+        name,frame=camera_on(cap)
+        if name==" ":
+            count=0
+            cv2.destroyAllWindows()
+            continue
+        cam_show(frame)
+        if prev == name :
+            count+= 1
+        else:
+            prev=name
+            count=0
+        if count >=10:
+            count=0
+            markAttendance(name,frame)
