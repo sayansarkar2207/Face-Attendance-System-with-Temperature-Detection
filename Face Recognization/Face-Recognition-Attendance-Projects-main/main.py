@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 import serial
 import pyttsx3
+import speech_recognition as sr
 
 
 def write_read():
@@ -26,6 +27,7 @@ def findEncodings(images):
 
 
 def markAttendance(name,frame):
+    engine = pyttsx3.init()
     today = datetime.today()
     dateString = today.strftime("%d-%m-%Y")
     dt=today.strftime("%m-%d-%Y")
@@ -174,6 +176,9 @@ def cam_show(frame):
 
 if __name__ == '__main__':
     engine = pyttsx3.init()
+    engine.say("Starting")
+    engine.runAndWait()
+    r = sr.Recognizer()
     arduino = serial.Serial(port='COM3', baudrate=9600, timeout=10)
     path = 'Training_images'
     images = []
@@ -187,21 +192,56 @@ if __name__ == '__main__':
     print(classNames)
     encodeListKnown = findEncodings(images)
     print('Encoding Complete')
-    cap = cv2.VideoCapture(0)
+    print("\t*********************************************************")
+    print("\t***** Welcome To Face Recognition Attendance System *****")
+    print("\t*********************************************************")
+    engine.say("Welcome To Face Recognition Attendance System")
+    engine.runAndWait()
+    engine.say("If you want to start the recognization please say start")
+    engine.runAndWait()
+    #cap = cv2.VideoCapture(0)
     count=0
+    fcount=1000
     prev ="True"
+    cap = cv2.VideoCapture(0)
     while True:
+        if(count==0 and fcount==1000):
+            text=" "
+            cap.release()
+            cv2.destroyAllWindows()
+            with sr.Microphone(device_index =0, sample_rate = 48000,chunk_size = 2048) as source:
+                r.adjust_for_ambient_noise(source)
+                print("Say Something")
+                audio = r.listen(source)
+                try:
+                    text = r.recognize_google(audio)
+                    print("you said: " + text)
+                except sr.UnknownValueError:
+                    print("Google Speech Recognition could not understand audio")
+                except sr.RequestError as e:
+                    print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            if(text=="stop"):
+                engine.say("Thank you for using Face Recognization attendance system")
+                engine.runAndWait()
+                break
+            if(text!="start"):
+                continue
+            fcount=0
+            count=1
+            cap = cv2.VideoCapture(0)
         name,frame=camera_on(cap)
         if name==" ":
             count=0
-            cv2.destroyAllWindows()
+            fcount+=1
+            cam_show(frame)
             continue
         cam_show(frame)
         if prev == name :
             count+= 1
         else:
             prev=name
+            count=1
+        if count >=15:
             count=0
-        if count >=10:
-            count=0
+            fcount=0
             markAttendance(name,frame)
