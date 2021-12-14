@@ -98,7 +98,7 @@ If your sensor is not on breakout board gonna need to pull-up the SDA and SCL pi
 
 Just connect the pins to the Arduino:
 1. GND  - GND
-2. BL   - GND
+2. BL   - 5V
 3. VCC  - 3.3V
 4. CLK  - Pin 8
 5. DIN  - Pin 9
