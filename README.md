@@ -114,8 +114,13 @@ Just connect the pins to the Arduino:
 #
 ## Steps to be followed for setup:
 1.First, we must install python on the machine and add it to path variable.
+
 2.We must check that our camera is working, and the Arduino is connected.
+
 3.Now we have to proceed to the wiring of Arduino and the temperature sensor.
+
 4.Now we must upload the Arduino program to the Arduino Board.
 ![image](https://github.com/sayansarkar2207/Face-Attendance-System-with-Temperature-Detection/assets/70804496/74c868f8-f0ee-423c-a28d-cc7a47abe239)
+
+5.
 
