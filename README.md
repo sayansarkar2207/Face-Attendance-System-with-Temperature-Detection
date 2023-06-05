@@ -1,4 +1,4 @@
-# Dashing Attendance 
+# Face Attendance System with Temperature Detection
 
 ## Our Objective
 We are designing a AI based face recognization system for taking attendance of the employees and record their body temperature, to predict any covid positive case.
