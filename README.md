@@ -116,3 +116,4 @@ Just connect the pins to the Arduino:
 1.First, we must install python on the machine and add it to path variable.
 2.We must check that our camera is working, and the Arduino is connected.
 3.Now we have to proceed to the wiring of Arduino and the temperature sensor.
+4.Now we must upload the Arduino program to the Arduino Board.
