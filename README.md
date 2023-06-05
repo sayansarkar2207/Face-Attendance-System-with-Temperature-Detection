@@ -110,3 +110,9 @@ Just connect the pins to the Arduino:
 
 1. Adafruit MLX90614 library: <a href="https://github.com/adafruit/Adafruit-MLX90614-Library">Click to view source</a> ( Already included in Arduino Libraries )
 2. Nokia 5110 Graph library: <a href="http://www.rinkydinkelectronics.com/library.php?id=47">Click to view source</a>  ( Already included in Arduino Libraries )
+
+#
+## Steps to be followed for setup:
+1.First, we must install python on the machine and add it to path variable.
+2.We must check that our camera is working, and the Arduino is connected.
+3.Now we have to proceed to the wiring of Arduino and the temperature sensor.
