@@ -122,5 +122,18 @@ Just connect the pins to the Arduino:
 4.Now we must upload the Arduino program to the Arduino Board.
 ![image](https://github.com/sayansarkar2207/Face-Attendance-System-with-Temperature-Detection/assets/70804496/74c868f8-f0ee-423c-a28d-cc7a47abe239)
 
-5.
+5.Now run the Codance.bat file
+![image](https://github.com/sayansarkar2207/Face-Attendance-System-with-Temperature-Detection/assets/70804496/85f7121f-99e1-48b9-bb1a-a0657ff71833)
 
+6.Now a lot of stuff will be loaded and finally you will hear the voice assistant and a web UI will appear. Click on Start.
+![image](https://github.com/sayansarkar2207/Face-Attendance-System-with-Temperature-Detection/assets/70804496/7ea5a63d-ffe7-4768-9df1-26650f95ae86)
+
+7.Now let’s talk about the flow of the program.
+![image](https://github.com/sayansarkar2207/Face-Attendance-System-with-Temperature-Detection/assets/70804496/7570d337-8199-4180-bb39-7a80ce9f3b3e)
+
+8.So, we have finally completed the setup.
+
+#
+## Future Improvements
+The scope of the future of the proposed project could be, photographing students' detailed details and using any cloud technology to store these images. The system can be configured and used on ATM machines to detect fraud. The system can be disseminated to ensure and track the attendance of various government offices and companies. To ensure access control and identification of real users can also be included in bank cabinets and vaults. To identify criminals this program can be used by the police as well.
+The purpose of a face-to-face monitoring program is to simplify the time-consuming process and the teacher's efforts that can be used in teaching, are a simple and easy process for students as well. The program will take pictures of students in the classroom and use a face recognition algorithm to mark their presence on the sheet. In this way the class will be marked for its presence without wasting time on a call that often leads to the presence of a representative. User of this program is teacher, admin, students. The program will allow the instructor to control the visit where the photography process should begin. The system will also allow the administrator to update the site when a new student registers. For students, this program will help guide their attendance. Readers can only view their attendance and will not be able to edit or manage system database. The system administrator will be responsible for managing, uploading and updating the site.
